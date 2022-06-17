@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat app</title>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+    <style>
+        .left {
+            text-align: left;
+            padding-left: 20px;
+            height: 30px;
+            padding-top: 10px;
+            background-color: rgb(192, 151, 151);
+        }
+        .right {
+            text-align: right;
+            height: 30px;
+            background-color: rgb(192, 190, 190);
+            padding-right: 20px;
+            padding-top: 10px;
+        }
+        div {
+            border: 2px blue solid;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;" id="heading"></h2>
+    <div style="text-align: left" id="left">
+
+    </div>
+    <br>
+    <textarea id="message" cols="30" rows="10"></textarea>
+    <br>
+    <button onclick="send()" id="submit">send</button>
+    <script src="script.js"></script>
+</body>
+</html>
