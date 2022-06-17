@@ -23,10 +23,46 @@
             padding-top: 10px;
             padding-bottom: 10px;
         }
-        div {
+        #left {
             border: 2px blue solid;
+            border-radius: 20px;
             height: auto;
             min-height: 100px;
+            max-height: 400px;
+            overflow: scroll;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+        textarea {
+            width: 50%;
+            height: 100px;
+            border-radius: 40px;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            font-size: 18px;
+            padding-top: 10px;
+        }
+
+        textarea::placeholder {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        button {
+            background-color: goldenrod;
+            color: white;
+            width: 100px;
+            height: 50px;
+            border: none;
+            outline: none;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+        button:hover {
+            color: goldenrod;
+            background-color: gainsboro;
         }
     </style>
 </head>
@@ -36,9 +72,11 @@
 
     </div>
     <br>
-    <textarea id="message" cols="30" rows="10"></textarea>
+    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <textarea placeholder="Enter your message" id="message"></textarea>
     <br>
-    <button onclick="send()" id="submit">send</button>
+        <button onclick="send()" id="submit">send</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

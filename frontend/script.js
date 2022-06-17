@@ -19,6 +19,7 @@ socket.on("message", (message) => {
 });
 
 function send() {
+    if(message.value === "") return
   socket.emit("newMessage", message.value);
   const yourMessage = document.createElement("p");
   const breakLine = document.createElement("br");
