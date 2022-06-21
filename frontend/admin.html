@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-</head>
-<body>
-    
-</body>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible"
+            content="IE=edge">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+            href="style.css">
+        <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+            integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+            crossorigin="anonymous"></script>
+        <title>Admin</title>
+    </head>
+
+    <body onload="getAllUser()">
+        <h3 class="adminDash">Admin Dashboard</h3>
+        <div class="mainDiv">
+            <div class="listDiv">
+                <div class="noti">
+                    <h3>Customers</h3>
+                    <p id="noti"></p>
+                </div>
+                <ul id="customerList"
+                    class="customers">
+
+                </ul>
+            </div>
+            <div class="chatDiv">
+                <h3>Chat</h3>
+                <p id="customerName"></p>
+                <div style="display: flex; justify-content: center;">
+                    <div class="messageDiv"
+                        id="left">
+
+                    </div>
+                </div>
+                <br>
+                <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                    <textarea placeholder="Enter your message"
+                        id="message"
+                        class="message"></textarea>
+                    <br>
+                    <button onclick="send()"
+                        id="submit"
+                        class="submit">send</button>
+                </div>
+            </div>
+        </div>
+        <script src="second.js"></script>
+    </body>
+
 </html>

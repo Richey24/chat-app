@@ -1,100 +1,192 @@
- .left {
-     text-align: left;
-     padding-left: 10px;
-     padding-right: 10px;
-     height: auto;
-     width: fit-content;
-     padding-top: 10px;
-     padding-bottom: 10px;
-     background-color: rgb(192, 151, 151);
-     margin-top: -0.5rem;
-     margin-left: 1.5rem;
-     border-radius: 40px;
-     color: white;
-     font-style: italic;
-     font-weight: 500;
- }
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
- .right {
-     text-align: right;
-     height: auto;
-     width: fit-content;
-     background-color: rgb(192, 190, 190);
-     padding-left: 10px;
-     padding-right: 10px;
-     padding-top: 10px;
-     padding-bottom: 10px;
-     margin-top: -0.5rem;
-     margin-right: 1.5rem;
-     border-radius: 40px;
-     color: white;
-     font-style: italic;
-     font-weight: 500;
- }
+body {
+    font-family: 'Courgette', cursive;
+}
 
- .recievedDiv {
-     display: flex;
-     align-items: flex-start;
-     flex-direction: column;
-     gap: 0px;
- }
+.adminDash {
+    text-align: center;
+}
 
- .sendDiv {
-     display: flex;
-     align-items: flex-end;
-     flex-direction: column;
- }
+.mainDiv {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
- #left {
-     border: 2px blue solid;
-     border-radius: 20px;
-     padding-top: 1rem;
-     height: auto;
-     min-height: 200px;
-     max-height: 600px;
-     overflow: scroll;
-     overflow-x: hidden;
-     overflow-y: hidden;
-     width: 60%;
-     text-align: center;
- }
+.listDiv {
+    border: 2px solid #d270d2;
+    width: 50%;
+    height: 90vh;
+    border-radius: 40px;
+    overflow: scroll;
+}
 
- textarea {
-     width: 50%;
-     height: 100px;
-     border-radius: 40px;
-     padding-left: 3rem;
-     padding-right: 3rem;
-     font-size: 18px;
-     padding-top: 10px;
- }
+::-webkit-scrollbar {
+    display: none;
+}
 
- textarea::placeholder {
-     text-align: center;
-     font-size: 20px;
- }
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
 
- button {
-     background-color: goldenrod;
-     color: white;
-     width: 100px;
-     height: 50px;
-     border: none;
-     outline: none;
-     font-size: 24px;
-     font-weight: bold;
-     cursor: pointer;
-     border-radius: 20px;
- }
+.listDiv h3 {
+    text-align: center;
+}
 
- button:hover {
-     color: goldenrod;
-     background-color: gainsboro;
- }
+.chatDiv h3 {
+    text-align: center;
+}
 
- #heading {
-     color: cadetblue;
-     font-weight: 500;
-     font-style: italic;
-     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
- }
+.chatDiv {
+    border: 2px solid #d270d2;
+    width: 50%;
+    height: 90vh;
+    border-radius: 40px;
+}
+
+.left {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: auto;
+    width: fit-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(192, 151, 151);
+    margin-top: -0.5rem;
+    margin-left: 1.5rem;
+    border-radius: 40px;
+    color: white;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.right {
+    text-align: right;
+    height: auto;
+    width: fit-content;
+    background-color: rgb(192, 190, 190);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: -0.5rem;
+    margin-right: 1.5rem;
+    border-radius: 40px;
+    color: white;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.recievedDiv {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.sendDiv {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.theMessageDiv {
+    border: 2px blue solid;
+    border-radius: 20px;
+    padding-top: 1rem;
+    height: auto;
+    min-height: 200px;
+    max-height: 370px;
+    overflow: scroll;
+    width: 60%;
+    text-align: center;
+}
+
+.messageDiv {
+    padding-top: 1rem;
+    height: 290px;
+    overflow: scroll;
+    width: 95%;
+}
+
+textarea {
+    width: 50%;
+    height: 60px;
+    border-radius: 40px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+.message {
+    width: 80%;
+    height: 50px;
+}
+
+textarea::placeholder {
+    text-align: center;
+    font-size: 20px;
+}
+
+button {
+    background-color: goldenrod;
+    color: white;
+    width: 100px;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+button:hover {
+    color: goldenrod;
+    background-color: gainsboro;
+}
+
+#heading {
+    color: cadetblue;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.customers li {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 3rem;
+    align-items: center;
+}
+
+.customers li p {
+    width: 60px;
+    height: 40px;
+    background-color: #d270d2;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#customerName {
+    text-align: center;
+}
+
+.noti {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#noti {
+    color: red;
+    font-size: 12px;
+}

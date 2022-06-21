@@ -1,61 +1,17 @@
-const socket = io("http://localhost:5000", { autoConnect: false });
+const socket = io("http://localhost:5000");
 const left = document.getElementById("left");
 const heading = document.getElementById("heading");
 const message = document.getElementById("message");
 const customerList = document.getElementById("customerList");
 const customerName = document.getElementById("customerName");
-
-const myForm = document.getElementById("form");
-myForm !== null && (myForm.onsubmit = submit);
-
-async function submit(event) {
-  event.preventDefault();
-  const user = {
-    username: event.target.username.value,
-    password: event.target.password.value,
-  };
-  const rep = await fetch("https://dreamtechhotel.herokuapp.com/user/login", {
-    method: "POST",
-    body: JSON.stringify(user),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
-  const res = await rep.json();
-  localStorage.setItem("userId", res._id);
-  localStorage.setItem("username", res.username);
-  if (res.role === "Customer") {
-    window.location.href = "http://127.0.0.1:5500/frontend/customer.html";
-  } else {
-    window.location.href = "http://127.0.0.1:5500/frontend/admin.html";
-  }
-  console.log(res);
-}
-
-function connect() {
-  let userId = localStorage.getItem("userId");
-  if (!userId) {
-    window.location.href = "http://127.0.0.1:5500/frontend/login.html";
-  }
-  socket.connect();
-}
-
-function check() {
-  let userId = localStorage.getItem("userId");
-  if (userId) {
-    window.location.href = "http://127.0.0.1:5500/frontend/customer.html";
-  }
-}
+const noti = document.getElementById("noti");
 
 socket.on("connect", () => {
-  let userId = localStorage.getItem("userId");
-  let username = localStorage.getItem("username");
-  socket.emit("join-room", userId);
   socket.emit("link", "34847584984");
-  heading.innerHTML = `Welcome ${username} to the best hotel in the city, Feel free to request for any services`;
 });
 
 socket.on("message", (message) => {
+  console.log(message);
   const recievedMessage = document.createElement("p");
   const container = document.createElement("div");
   console.log(message);
@@ -72,12 +28,14 @@ socket.on("message", (message) => {
   left.lastElementChild.scrollIntoView();
 });
 
+socket.on("noti", (username) => {
+  noti.innerHTML = `New message from ${username}`;
+});
+
 function send() {
   if (message.value === "") return;
   let userId = localStorage.getItem("userId");
-  let username = localStorage.getItem("username");
   socket.emit("newMessage", message.value, userId);
-  socket.emit("noti", "34847584984", username);
   const yourMessage = document.createElement("p");
   const container = document.createElement("div");
   yourMessage.innerHTML = message.value;
@@ -93,6 +51,7 @@ function send() {
   message.value = "";
   left.appendChild(container);
   left.lastElementChild.scrollIntoView();
+  noti.innerHTML = "";
 }
 
 async function getAllUser() {
@@ -110,15 +69,13 @@ async function getAllUser() {
     singleCus.appendChild(chat);
     customerList.appendChild(singleCus);
   });
-  socket.connect();
   users.user.forEach((single) => {
     let oneUser = document.getElementById(single._id);
     oneUser.addEventListener("click", () => {
       customerName.innerHTML = `You are in a chat with ${single.username}`;
       socket.emit("join-room", single._id);
+      socket.emit("get-message", "34847584984", single._id);
       console.log(`you clicked on user ${single._id}`);
     });
   });
 }
-
-// getAllUser();
