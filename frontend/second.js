@@ -69,12 +69,19 @@ function send() {
 }
 
 async function getAllUser() {
+  let userId = localStorage.getItem("userId");
+  let role = localStorage.getItem("role");
+
+  if (!userId || role !== "Employee") {
+    window.location.href = "http://127.0.0.1:5500/frontend/login.html";
+    return;
+  }
   let response = await fetch(
     "https://dreamtechhotel.herokuapp.com/user/get/all"
   );
   let users = await response.json();
-  let customers = users.user.filter((user) => user.role === "1");
-  users.user.forEach((customer) => {
+  let customers = users.user.filter((user) => user.role === "Customer");
+  customers.forEach((customer) => {
     let singleCus = document.createElement("li");
     let chat = document.createElement("p");
     chat.id = customer._id;
@@ -83,10 +90,11 @@ async function getAllUser() {
     singleCus.appendChild(chat);
     customerList.appendChild(singleCus);
   });
-  users.user.forEach((single) => {
+  customers.forEach((single) => {
     let oneUser = document.getElementById(single._id);
     oneUser.addEventListener("click", () => {
       document.getElementById("chatDiv").style.display = "block";
+      document.getElementById("chatDiv").scrollIntoView({ behavior: "smooth" });
       left.innerHTML = "";
       customerName.innerHTML = `You are in a chat with ${single.username}`;
       id = single._id;

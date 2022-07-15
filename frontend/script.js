@@ -24,6 +24,7 @@ async function submit(event) {
   const res = await rep.json();
   localStorage.setItem("userId", res._id);
   localStorage.setItem("username", res.username);
+  localStorage.setItem("role", res.role);
   if (res.role === "Customer") {
     window.location.href = "http://127.0.0.1:5500/frontend/customer.html";
   } else {
@@ -42,8 +43,12 @@ function connect() {
 
 function check() {
   let userId = localStorage.getItem("userId");
+  let role = localStorage.getItem("role");
   if (userId) {
-    window.location.href = "http://127.0.0.1:5500/frontend/customer.html";
+    role === "Customer" &&
+      (window.location.href = "http://127.0.0.1:5500/frontend/customer.html");
+    role === "Employee" &&
+      (window.location.href = "http://127.0.0.1:5500/frontend/admin.html");
   }
 }
 

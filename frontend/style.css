@@ -101,6 +101,9 @@ body {
     padding-left: 3rem;
     padding-right: 3rem;
     font-size: 18px;
+    outline: none;
+    resize: none;
+    border: #d270d2 1px solid;
     padding-top: 10px;
 }
 
@@ -110,6 +113,9 @@ body {
     border-radius: 40px;
     padding-left: 3rem;
     padding-top: 3rem;
+    outline: none;
+    resize: none;
+    border: #d270d2 1px solid;
     padding-right: 3rem;
     font-size: 18px;
     padding-top: 10px;
@@ -177,4 +183,15 @@ button:hover {
 #noti {
     color: red;
     font-size: 12px;
+}
+
+input {
+    width: 60vw;
+    height: 30px;
+    border: #d270d2 1px solid;
+    outline: none;
+}
+
+form {
+    margin-top: 20px;
 }
