@@ -46,57 +46,34 @@ body {
     border-radius: 40px;
 }
 
-.left {
-    text-align: left;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: auto;
-    width: fit-content;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: rgb(192, 151, 151);
-    margin-top: -0.5rem;
-    margin-left: 1.5rem;
-    border-radius: 40px;
-    color: white;
-    font-style: italic;
-    font-weight: 500;
+.right {
+    font-size: 20px;
+    padding-top: 3px;
+    margin-bottom: -0.3rem;
 }
 
-.right {
-    text-align: right;
-    height: auto;
-    width: fit-content;
-    background-color: rgb(192, 190, 190);
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: -0.5rem;
-    margin-right: 1.5rem;
-    border-radius: 40px;
-    color: white;
-    font-style: italic;
-    font-weight: 500;
+.yourName {
+    font-size: 10px;
 }
 
 .recievedDiv {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0px;
-}
-
-.sendDiv {
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
+    text-align: left;
+    height: auto;
+    width: 98%;
+    background-color: rgb(192, 151, 151);
+    padding-left: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
 }
 
 .theMessageDiv {
     border: 2px blue solid;
     border-radius: 20px;
     padding-top: 1rem;
+    padding-left: 1rem;
     height: auto;
     min-height: 200px;
     max-height: 370px;

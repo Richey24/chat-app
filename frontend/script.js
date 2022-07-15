@@ -51,24 +51,38 @@ socket.on("connect", () => {
   let userId = localStorage.getItem("userId");
   let username = localStorage.getItem("username");
   socket.emit("join-room", userId);
+  socket.emit("get-message", userId);
   socket.emit("link", "34847584984");
   heading.innerHTML = `Welcome ${username} to the best hotel in the city, Feel free to request for any services`;
 });
 
-socket.on("message", (message) => {
-  const recievedMessage = document.createElement("p");
-  const container = document.createElement("div");
-  console.log(message);
-  recievedMessage.innerHTML = message;
-  recievedMessage.className = "left";
-  container.innerHTML = recievedMessage.outerHTML;
-  container.className = "recievedDiv";
-  if (left.lastElementChild?.className === "recievedDiv") {
-    left.lastElementChild.appendChild(recievedMessage);
+socket.on("message1", (messages) => {
+  let username = localStorage.getItem("username");
+  if (messages === null) return;
+  messages.map((mes) => {
+    const temp = document.createElement("template");
+    let mess = mes.trim();
+    temp.innerHTML = mess;
+    if (
+      temp.content.firstElementChild.lastElementChild.innerHTML === username
+    ) {
+      temp.content.firstElementChild.lastElementChild.innerHTML = "You";
+    }
+    left.appendChild(temp.content.firstChild);
     left.lastElementChild.scrollIntoView();
-    return;
+  });
+});
+
+socket.on("message", (messages) => {
+  let username = localStorage.getItem("username");
+  const temp = document.createElement("template");
+  let mes = messages[messages.length - 1].trim();
+  temp.innerHTML = mes;
+
+  if (temp.content.firstElementChild.lastElementChild.innerHTML === username) {
+    temp.content.firstElementChild.lastElementChild.innerHTML = "You";
   }
-  left.appendChild(container);
+  left.appendChild(temp.content.firstChild);
   left.lastElementChild.scrollIntoView();
 });
 
@@ -76,49 +90,18 @@ function send() {
   if (message.value === "") return;
   let userId = localStorage.getItem("userId");
   let username = localStorage.getItem("username");
-  socket.emit("newMessage", message.value, userId);
+  const recievedMessage = document.createElement("p");
+  const yourName = document.createElement("span");
+  yourName.className = "yourName";
+  yourName.innerHTML = username;
+  const contain = document.createElement("div");
+  recievedMessage.innerHTML = message.value;
+  recievedMessage.className = "right";
+  contain.innerHTML = recievedMessage.outerHTML;
+  contain.appendChild(yourName);
+  contain.className = "recievedDiv";
+
+  socket.emit("newMessage", contain.outerHTML, userId);
   socket.emit("noti", "34847584984", username);
-  const yourMessage = document.createElement("p");
-  const container = document.createElement("div");
-  yourMessage.innerHTML = message.value;
-  yourMessage.className = "right";
-  container.innerHTML = yourMessage.outerHTML;
-  container.className = "sendDiv";
-  if (left.lastElementChild?.className === "sendDiv") {
-    left.lastElementChild.appendChild(yourMessage);
-    message.value = "";
-    left.lastElementChild.scrollIntoView();
-    return;
-  }
   message.value = "";
-  left.appendChild(container);
-  left.lastElementChild.scrollIntoView();
 }
-
-async function getAllUser() {
-  let response = await fetch(
-    "https://dreamtechhotel.herokuapp.com/user/get/all"
-  );
-  let users = await response.json();
-  let customers = users.user.filter((user) => user.role === "1");
-  users.user.forEach((customer) => {
-    let singleCus = document.createElement("li");
-    let chat = document.createElement("p");
-    chat.id = customer._id;
-    singleCus.innerHTML = customer.username;
-    chat.innerHTML = "Chat";
-    singleCus.appendChild(chat);
-    customerList.appendChild(singleCus);
-  });
-  socket.connect();
-  users.user.forEach((single) => {
-    let oneUser = document.getElementById(single._id);
-    oneUser.addEventListener("click", () => {
-      customerName.innerHTML = `You are in a chat with ${single.username}`;
-      socket.emit("join-room", single._id);
-      console.log(`you clicked on user ${single._id}`);
-    });
-  });
-}
-
-// getAllUser();

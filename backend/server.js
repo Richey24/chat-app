@@ -20,7 +20,7 @@ io.on("connection", (socket) => {
       allMessage[userId] = [];
       allMessage[userId].push(message);
     }
-    socket.to(userId).emit("message", allMessage[userId]);
+    io.to(userId).emit("message", allMessage[userId], userId);
   });
   socket.on("noti", (link, username) => {
     socket.to(link).emit("noti", username);
@@ -28,9 +28,8 @@ io.on("connection", (socket) => {
   socket.on("link", (link) => {
     socket.join(link);
   });
-  socket.on("get-message", (id, userId) => {
-    console.log(id, userId);
-    socket.to(id).emit("message", allMessage[userId]);
+  socket.on("get-message", (userId) => {
+    socket.emit("message1", allMessage[userId]);
   });
   socket.on("join-room", (userId) => {
     socket.join(userId);

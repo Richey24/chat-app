@@ -6,26 +6,42 @@ const customerList = document.getElementById("customerList");
 const customerName = document.getElementById("customerName");
 const noti = document.getElementById("noti");
 
+let id = "";
+
 socket.on("connect", () => {
   socket.emit("link", "34847584984");
 });
 
-socket.on("message", (message) => {
-  console.log(message);
-  const recievedMessage = document.createElement("p");
-  const container = document.createElement("div");
-  console.log(message);
-  recievedMessage.innerHTML = message;
-  recievedMessage.className = "left";
-  container.innerHTML = recievedMessage.outerHTML;
-  container.className = "recievedDiv";
-  if (left.lastElementChild?.className === "recievedDiv") {
-    left.lastElementChild.appendChild(recievedMessage);
-    left.lastElementChild.scrollIntoView();
-    return;
+socket.on("message", (messages, secondId) => {
+  if (id !== secondId) return;
+  const temp = document.createElement("template");
+  let mes = messages[messages.length - 1].trim();
+  temp.innerHTML = mes;
+  if (
+    temp.content.firstElementChild.lastElementChild.innerHTML ===
+    "Customer service"
+  ) {
+    temp.content.firstElementChild.lastElementChild.innerHTML = "You";
   }
-  left.appendChild(container);
+  left.appendChild(temp.content.firstChild);
   left.lastElementChild.scrollIntoView();
+});
+
+socket.on("message1", (messages) => {
+  if (messages === null) return;
+  messages.map((mes) => {
+    const temp = document.createElement("template");
+    let mess = mes.trim();
+    temp.innerHTML = mess;
+    if (
+      temp.content.firstElementChild.lastElementChild.innerHTML ===
+      "Customer service"
+    ) {
+      temp.content.firstElementChild.lastElementChild.innerHTML = "You";
+    }
+    left.appendChild(temp.content.firstChild);
+    left.lastElementChild.scrollIntoView();
+  });
 });
 
 socket.on("noti", (username) => {
@@ -34,23 +50,21 @@ socket.on("noti", (username) => {
 
 function send() {
   if (message.value === "") return;
-  let userId = localStorage.getItem("userId");
-  socket.emit("newMessage", message.value, userId);
-  const yourMessage = document.createElement("p");
-  const container = document.createElement("div");
-  yourMessage.innerHTML = message.value;
-  yourMessage.className = "right";
-  container.innerHTML = yourMessage.outerHTML;
-  container.className = "sendDiv";
-  if (left.lastElementChild?.className === "sendDiv") {
-    left.lastElementChild.appendChild(yourMessage);
-    message.value = "";
-    left.lastElementChild.scrollIntoView();
-    return;
-  }
+
+  const recievedMessage = document.createElement("p");
+  const yourName = document.createElement("span");
+  yourName.className = "yourName";
+  yourName.innerHTML = "Customer service";
+  const contain = document.createElement("div");
+  recievedMessage.innerHTML = message.value;
+  recievedMessage.className = "right";
+  contain.innerHTML = recievedMessage.outerHTML;
+  contain.appendChild(yourName);
+  contain.className = "recievedDiv";
+
+  socket.emit("newMessage", contain.outerHTML, id);
+
   message.value = "";
-  left.appendChild(container);
-  left.lastElementChild.scrollIntoView();
   noti.innerHTML = "";
 }
 
@@ -72,10 +86,12 @@ async function getAllUser() {
   users.user.forEach((single) => {
     let oneUser = document.getElementById(single._id);
     oneUser.addEventListener("click", () => {
+      document.getElementById("chatDiv").style.display = "block";
+      left.innerHTML = "";
       customerName.innerHTML = `You are in a chat with ${single.username}`;
+      id = single._id;
       socket.emit("join-room", single._id);
-      socket.emit("get-message", "34847584984", single._id);
-      console.log(`you clicked on user ${single._id}`);
+      socket.emit("get-message", single._id);
     });
   });
 }
