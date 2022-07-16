@@ -1,4 +1,6 @@
-const socket = io("http://localhost:5000", { autoConnect: false });
+const socket = io("https://dreamtechchat.herokuapp.com", {
+  autoConnect: false,
+});
 const left = document.getElementById("left");
 const heading = document.getElementById("heading");
 const message = document.getElementById("message");
