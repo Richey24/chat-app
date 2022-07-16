@@ -36,7 +36,7 @@ async function submit(event) {
 function connect() {
   let userId = localStorage.getItem("userId");
   if (!userId) {
-    window.location.href = "http://127.0.0.1:5500/frontend/login.html";
+    window.location.href = "http://127.0.0.1:5500/frontend/index.html";
   }
   socket.connect();
 }

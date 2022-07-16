@@ -73,7 +73,7 @@ async function getAllUser() {
   let role = localStorage.getItem("role");
 
   if (!userId || role !== "Employee") {
-    window.location.href = "http://127.0.0.1:5500/frontend/login.html";
+    window.location.href = "http://127.0.0.1:5500/frontend/index.html";
     return;
   }
   let response = await fetch(
