@@ -74,7 +74,7 @@ async function getAllUser() {
 
   if (!userId || role !== "Employee") {
     window.location.href =
-      "https://brave-ocean-0db6b1310.1.azurestaticapps.net/frontend/index.html";
+      "https://brave-ocean-0db6b1310.1.azurestaticapps.net/index.html";
     return;
   }
   let response = await fetch(
