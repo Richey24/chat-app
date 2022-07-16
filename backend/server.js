@@ -9,6 +9,7 @@ const io = new Server(httpServer, {
     origin: "https://brave-ocean-0db6b1310.1.azurestaticapps.net",
   },
 });
+
 const port = process.env.PORT || 5000;
 const allMessage = {};
 
