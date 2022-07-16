@@ -26,9 +26,11 @@ async function submit(event) {
   localStorage.setItem("username", res.username);
   localStorage.setItem("role", res.role);
   if (res.role === "Customer") {
-    window.location.href = "http://127.0.0.1:5500/frontend/customer.html";
+    window.location.href =
+      "https://brave-ocean-0db6b1310.1.azurestaticapps.net/frontend/customer.html";
   } else {
-    window.location.href = "http://127.0.0.1:5500/frontend/admin.html";
+    window.location.href =
+      "https://brave-ocean-0db6b1310.1.azurestaticapps.net/frontend/admin.html";
   }
   console.log(res);
 }
@@ -36,7 +38,8 @@ async function submit(event) {
 function connect() {
   let userId = localStorage.getItem("userId");
   if (!userId) {
-    window.location.href = "http://127.0.0.1:5500/frontend/index.html";
+    window.location.href =
+      "https://brave-ocean-0db6b1310.1.azurestaticapps.net/frontend/index.html";
   }
   socket.connect();
 }
@@ -46,9 +49,11 @@ function check() {
   let role = localStorage.getItem("role");
   if (userId) {
     role === "Customer" &&
-      (window.location.href = "http://127.0.0.1:5500/frontend/customer.html");
+      (window.location.href =
+        "https://brave-ocean-0db6b1310.1.azurestaticapps.net/frontend/customer.html");
     role === "Employee" &&
-      (window.location.href = "http://127.0.0.1:5500/frontend/admin.html");
+      (window.location.href =
+        "https://brave-ocean-0db6b1310.1.azurestaticapps.net/frontend/admin.html");
   }
 }
 

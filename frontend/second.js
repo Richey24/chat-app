@@ -73,7 +73,8 @@ async function getAllUser() {
   let role = localStorage.getItem("role");
 
   if (!userId || role !== "Employee") {
-    window.location.href = "http://127.0.0.1:5500/frontend/index.html";
+    window.location.href =
+      "https://brave-ocean-0db6b1310.1.azurestaticapps.net/frontend/index.html";
     return;
   }
   let response = await fetch(
