@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+body {
+    font-family: 'Courgette', cursive;
+    margin: 0;
+}
+
+.adminDash {
+    text-align: center;
+}
+
+.mainDiv {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.listDiv {
+    border: 2px solid #d270d2;
+    width: 90%;
+    height: 90vh;
+    border-radius: 40px;
+    overflow: scroll;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.listDiv h3 {
+    text-align: center;
+}
+
+.chatDiv h3 {
+    text-align: center;
+}
+
+.chatDiv {
+    border: 2px solid #d270d2;
+    width: 90%;
+    height: 90vh;
+    border-radius: 40px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.right {
+    font-size: 20px;
+    padding-top: 3px;
+    margin-bottom: -0.3rem;
+}
+
+.yourName {
+    font-size: 10px;
+}
+
+.recievedDiv {
+    text-align: left;
+    height: auto;
+    width: 98%;
+    background-color: rgb(192, 151, 151);
+    padding-left: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+}
+
+.theMessageDiv {
+    border: 2px blue solid;
+    border-radius: 20px;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    height: auto;
+    min-height: 200px;
+    max-height: 370px;
+    overflow: scroll;
+    width: 60%;
+    text-align: center;
+}
+
+.messageDiv {
+    padding-top: 1rem;
+    height: 290px;
+    overflow: scroll;
+    width: 95%;
+}
+
+.cusMess {
+    width: 50%;
+    height: 60px;
+    border-radius: 40px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    font-size: 18px;
+    outline: none;
+    resize: none;
+    border: #d270d2 1px solid;
+    padding-top: 10px;
+}
+
+.message {
+    width: 50%;
+    height: 40px;
+    border-radius: 40px;
+    padding-left: 3rem;
+    padding-top: 3rem;
+    outline: none;
+    resize: none;
+    border: #d270d2 1px solid;
+    padding-right: 3rem;
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+.cusMess::placeholder {
+    text-align: center;
+    font-size: 20px;
+}
+
+button {
+    background-color: goldenrod;
+    color: white;
+    width: 100px;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+button:hover {
+    color: goldenrod;
+    background-color: gainsboro;
+}
+
+#heading {
+    color: cadetblue;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.customers li {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 3rem;
+    align-items: center;
+}
+
+.customers li p {
+    width: 60px;
+    height: 40px;
+    background-color: #d270d2;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#customerName {
+    text-align: center
+}
+
+.noti {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#noti {
+    color: red;
+    font-size: 12px;
+}
+
+input {
+    width: 60vw;
+    height: 30px;
+    border: #d270d2 1px solid;
+    outline: none;
+}
+
+form {
+    margin-top: 20px;
+}
