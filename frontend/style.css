@@ -77,8 +77,9 @@ body {
 .theMessageDiv {
     border: 2px blue solid;
     border-radius: 20px;
-    padding-top: 1rem;
-    padding-left: 1rem;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     height: auto;
     min-height: 200px;
     max-height: 370px;
