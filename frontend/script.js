@@ -15,7 +15,7 @@ myForm !== null && (myForm.onsubmit = submit);
 async function submit(event) {
   event.preventDefault();
   const user = {
-    username: event.target.username.value,
+    email: event.target.username.value,
     password: event.target.password.value,
   };
   const rep = await fetch("https://dreamtechhotel.herokuapp.com/user/login", {
@@ -26,18 +26,19 @@ async function submit(event) {
     },
   });
   const res = await rep.json();
-  localStorage.setItem("userId", res._id);
-  localStorage.setItem("username", res.username);
-  localStorage.setItem("role", res.role);
-  // redirecting user to different page based on their role
-  if (res.role === "Customer") {
-    window.location.href =
-      "https://brave-ocean-0db6b1310.1.azurestaticapps.net/customer.html";
-  } else {
-    window.location.href =
-      "https://brave-ocean-0db6b1310.1.azurestaticapps.net/admin.html";
+  if (rep.status === 200) {
+    localStorage.setItem("userId", res._id);
+    localStorage.setItem("username", res.username);
+    localStorage.setItem("role", res.role);
+    // redirecting user to different page based on their role
+    if (res.role === "Customer") {
+      window.location.href =
+        "https://brave-ocean-0db6b1310.1.azurestaticapps.net/customer.html";
+    } else {
+      window.location.href =
+        "https://brave-ocean-0db6b1310.1.azurestaticapps.net/admin.html";
+    }
   }
-  console.log(res);
 }
 
 // customer page load handler function

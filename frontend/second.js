@@ -94,10 +94,11 @@ async function getAllUser() {
   let customers = users.user.filter((user) => user.role === "Customer");
   // displaying the UI for the list of user
   customers.forEach((customer) => {
+    console.log(customer);
     let singleCus = document.createElement("li");
     let chat = document.createElement("p");
     chat.id = customer._id; // giving each chat button the id of the customer id
-    singleCus.innerHTML = customer.username;
+    singleCus.innerHTML = customer.name;
     chat.innerHTML = "Chat";
     singleCus.appendChild(chat);
     customerList.appendChild(singleCus);
@@ -109,7 +110,7 @@ async function getAllUser() {
       document.getElementById("chatDiv").style.display = "block"; // displaying the chat UI
       document.getElementById("chatDiv").scrollIntoView({ behavior: "smooth" });
       left.innerHTML = "";
-      customerName.innerHTML = `You are in a chat with ${single.username}`;
+      customerName.innerHTML = `You are in a chat with ${single.name}`;
       id = single._id;
       socket.emit("join-room", single._id); // joining the room of that user id
       socket.emit("get-message", single._id); // getting all the previous messages
